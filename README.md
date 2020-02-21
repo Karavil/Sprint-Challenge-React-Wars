@@ -27,12 +27,21 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 - [ ] What is React JS and what problems does it try and solve? Support your answer with concepts introduced in class and from your personal research on the web.
 
 - [ ] What does it mean to _think_ in react?
+  
+  Thinking in react consists of planning your website around components and states.
 
 - [ ] Describe state.
 
+  State in React is the variable/part of an app that is prone to change (not static).
+  
 - [ ] Describe props.
 
+  Props are variables passed into components.
+
 - [ ] What are side effects, and how do you sync effects in a React component to state or prop changes?
+
+  Side effects in React is any modification in our application such as manipulating the dom, data fetching, api calls, etc.
+  We can sync effects in React with the useEffect hook which executes at each render and after every update. This can be       modified to run at the first render, then on specific state changes.
 
 ## Project Set Up
 

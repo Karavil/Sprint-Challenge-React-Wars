@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
+import Characters from './Characters'
+
 const CharactersContainer = () => {
   const [characters, setCharacters] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
@@ -13,16 +15,14 @@ const CharactersContainer = () => {
     async function fetchCharacterData() {
       try {
         let res = await axios.get(STARWARS_PEOPLE_API)
-        const loadNewCharacters = res.data.results.map(async character => {
+        res.data.results.forEach(async character => {
+          const homeworld = await getCharacterWorldName(character.homeworld)
           const newCharacter = {
             name: character.name,
-            homeworld: await getCharacterWorldName(character.homeworld),
+            homeworld: homeworld,
           }
-          return newCharacter
+          setCharacters(characters => [...characters, newCharacter])
         })
-        Promise.all(loadNewCharacters).then(newCharacters =>
-          setCharacters(newCharacters),
-        )
       } catch (error) {
         console.log(error)
       }
@@ -55,13 +55,12 @@ const CharactersContainer = () => {
   }
 
   return (
-    <div>
-      {characters.map(character => (
-        <p key={character.name}>
-          {character.name} {character.homeworld}
-        </p>
-      ))}
-    </div>
+    <Characters
+      characters={characters}
+      setCurrentPage={setCurrentPage}
+      nextButtonEnabed={nextButton}
+      prebButtonEnabled={prevButton}
+    />
   )
 }
 

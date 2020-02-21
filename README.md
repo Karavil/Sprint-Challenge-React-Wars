@@ -26,6 +26,8 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] What is React JS and what problems does it try and solve? Support your answer with concepts introduced in class and from your personal research on the web.
 
+  ReactJS is a library that focuses on simplifying and compartmantelizing parts of your website. ReactJS also allows dynamic   rendering through states, and this is enabled by writing code in JSX (which is then converted to HTML).
+
 - [ ] What does it mean to _think_ in react?
   
   Thinking in react consists of planning your website around components and states.

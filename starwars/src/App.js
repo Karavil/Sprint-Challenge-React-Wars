@@ -6,6 +6,10 @@ import CharactersContainer from './components/Characters/CharactersContainer';
 import backgroundImage from './sw-bg.jpg';
 
 const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+  }
+  
   body {
     height: 100vh;
     margin: 0;
@@ -36,11 +40,11 @@ const App = () => {
   // sync up with, if any.
 
   return (
-    <div className="App">
+    <>
       <GlobalStyle />
       <Header>React Wars</Header>
       <CharactersContainer/>
-    </div>
+    </>
   )
 }
 

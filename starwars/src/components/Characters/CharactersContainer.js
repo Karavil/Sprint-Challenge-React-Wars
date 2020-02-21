@@ -6,21 +6,23 @@ import Characters from './Characters'
 const CharactersContainer = () => {
   const [characters, setCharacters] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
-  const [nextButton, setNextButton] = useState(true)
-  const [prevButton, setPrevButton] = useState(false)
+  const [nextButtonDisabled, setNextButton] = useState(false)
+  const [prevButtonDisabled, setPrevButton] = useState(false)
 
   const STARWARS_PEOPLE_API = `https://swapi.co/api/people/?page=${currentPage}`
 
   useEffect(() => {
     async function fetchCharacterData() {
       try {
+        const thisPage = currentPage
         let res = await axios.get(STARWARS_PEOPLE_API)
         res.data.results.forEach(async character => {
           const homeworld = await getCharacterWorldName(character.homeworld)
           const newCharacter = {
             name: character.name,
-            homeworld: homeworld,
+            homeworld: '🌎  ' + homeworld,
           }
+          console.log(currentPage);
           setCharacters(characters => [...characters, newCharacter])
         })
       } catch (error) {
@@ -43,23 +45,28 @@ const CharactersContainer = () => {
   }
 
   const nextPage = () => {
+    setCharacters([])
     setCurrentPage(currentPage => currentPage + 1)
-    if (currentPage === 9) {
-      setNextButton(false)
-    }
+  }
+
+  const prevPage = () => {
+    setCharacters([])
+    setCurrentPage(currentPage => currentPage - 1)
   }
 
   const updateButtonStatus = () => {
-    setPrevButton(currentPage !== 1)
-    setNextButton(currentPage !== 9)
+    setPrevButton(currentPage === 1)
+    setNextButton(currentPage === 9)
   }
 
   return (
     <Characters
       characters={characters}
       setCurrentPage={setCurrentPage}
-      nextButtonEnabed={nextButton}
-      prebButtonEnabled={prevButton}
+      nextPage={nextPage}
+      prevPage={prevPage}
+      nextButtonDisabled={nextButtonDisabled}
+      prevButtonDisabled={prevButtonDisabled}
     />
   )
 }

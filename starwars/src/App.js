@@ -11,15 +11,16 @@ const GlobalStyle = createGlobalStyle`
   }
   
   body {
-    height: 100vh;
+    height: 95vh;
     margin: 0;
     padding: 0;
 
     text-align: center;
 
+    background-color: black;
     background-image: url(${backgroundImage});
     background-size: cover;
-    background-position: center;
+    background-position: top;
     background-repeat: no-repeat;
 
     font-family: sans-serif;
